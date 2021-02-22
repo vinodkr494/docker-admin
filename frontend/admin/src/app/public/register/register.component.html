@@ -1,0 +1,23 @@
+<div class="text-center">
+  <form class="form-signin" [formGroup]="form" (submit)="submit()">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+    <label for="firstName" class="sr-only" >First Name</label>
+    <input type="text" id="firstName"  formControlName="first_name" name="first_name" class="form-control" placeholder="First Name" required autofocus>
+
+    <label for="lastName" class="sr-only">Last Name</label>
+    <input type="text" id="lastName" formControlName="last_name" name="last_name" class="form-control" placeholder="Last Name" required autofocus>
+
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" formControlName="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" formControlName="password" name="password" class="form-control" placeholder="Password" required>
+
+    <label for="inputPasswordConfirm" class="sr-only">Password Confirm</label>
+    <input type="password" id="inputPasswordConfirm" formControlName="password_confirm" name="password_confirm" class="form-control" placeholder="Password Confirm" required>
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+
+  </form>
+</div>

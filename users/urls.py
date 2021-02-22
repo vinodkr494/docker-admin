@@ -1,12 +1,12 @@
 from django.urls import path
-from .views import register,login,AuthenticatedUser,PermissionAPIView,logout,RoleViewSet
+from .views import register,login,AuthenticatedUser,PermissionAPIView,logout,RoleViewSet,UserGenericAPIView,ProfileInfoAPIView,ProfilePasswordAPIView
 appname ='users'
 
 urlpatterns = [
-    path('register/',register),
-    path('login/',login),
-    path('logout/',logout),
-    path('user/',AuthenticatedUser.as_view()),
+    path('register',register),
+    path('login',login),
+    path('logout',logout),
+    path('user',AuthenticatedUser.as_view()),
     path('permissions/',PermissionAPIView.as_view()),
     path('roles',RoleViewSet.as_view({
         'get':'list',
@@ -16,5 +16,10 @@ urlpatterns = [
         'get':'retrieve',
         'put':'update',
         'delete':'destroy'
-        }))
+        })),
+    path('users/info',ProfileInfoAPIView.as_view()),
+    path('users/password',ProfilePasswordAPIView.as_view()),
+    path('users',UserGenericAPIView.as_view()),
+    path('users/<str:pk>',UserGenericAPIView.as_view()),
+    
 ]
