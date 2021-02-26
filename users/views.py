@@ -7,6 +7,7 @@ from .serializers import UserSerializer,PermissionSerializer,RoleSerializer
 from .authentication import generate_access_token,JWTAuthentication
 from .models import User,Permission,Role
 from admin.pagination import CustomPagination
+from users.permissions import ViewPermissions
 
 @api_view(['POST'])
 def register(request):
@@ -82,7 +83,8 @@ class PermissionAPIView(APIView):
 
 class RoleViewSet(viewsets.ViewSet):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated & ViewPermissions]
+    permission_object = 'role'
 
     def list(self,request):
         '''retrive all the role'''
@@ -132,7 +134,8 @@ class UserGenericAPIView(
     mixins.UpdateModelMixin,mixins.DestroyModelMixin,mixins.CreateModelMixin
     ):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated & ViewPermissions]
+    permission_object = 'users'
     queryset = User.objects.all()
     serializer_class = UserSerializer
     pagination_class = CustomPagination
